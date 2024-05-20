@@ -32,7 +32,7 @@ module.exports = {
       chunks: 'all',
     },
   },
-  devtool: 'inline-source-map'
+  devtool: 'inline-source-map',
   devServe: {
     static: {
       directory: path.resolve(__dirname, './public'),
