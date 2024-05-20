@@ -1,6 +1,7 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const wepback = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -23,7 +24,7 @@ module.exports = {
     maxAssetSize: 1000000,
   },
   output: {
-    path: path.resolve(__dirname, './public'),
+    path: path.resolve(__dirname, 'public'),
     filename: '[name].bundle.js',
     assetModuleFilename: '[name][ext]',
   },
@@ -50,7 +51,6 @@ module.exports = {
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
-          'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {
@@ -59,10 +59,12 @@ module.exports = {
             },
           },
         ],
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
+    new wepback.ProgressPlugin(),
     new HTMLWebpackPlugin({
       filename: 'index.html',
     }),
