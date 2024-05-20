@@ -33,7 +33,7 @@ module.exports = {
     },
   },
   devtool: 'inline-source-map',
-  devServe: {
+  devServer: {
     static: {
       directory: path.resolve(__dirname, './public'),
     },
