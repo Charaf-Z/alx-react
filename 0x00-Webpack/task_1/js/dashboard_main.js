@@ -4,7 +4,8 @@ const _ = require('lodash');
 let count = 0;
 
 function updateCounter() {
-  $('#count').html(`${++count} clicks on the button`);
+  count++;
+  $('#count').html(`${count} clicks on the button`);
 }
 
 const btn = $('<button>Click here to get started</button>').on(
