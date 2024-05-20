@@ -1,0 +1,71 @@
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  entry: {
+    shared: 'jquery',
+    header: {
+      import: './modules/header/header.js',
+      dependOn: 'shared',
+    },
+    body: {
+      import: './modules/body/body.js',
+      dependOn: 'shared',
+    },
+    footer: {
+      import: './modules/footer/footer.js',
+      dependOn: 'shared',
+    },
+  },
+  performance: {
+    maxAssetSize: 1000000,
+  },
+  output: {
+    path: path.resolve(__dirname, './public'),
+    filename: '[name].bundle.js',
+    assetModuleFilename: '[name][ext]',
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  devtool: 'inline-source-map'
+  devServe: {
+    static: {
+      directory: path.resolve(__dirname, './public'),
+    },
+    port: 8564,
+    open: true,
+    compress: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      filename: 'index.html',
+    }),
+    new CleanWebpackPlugin(),
+  ],
+};
