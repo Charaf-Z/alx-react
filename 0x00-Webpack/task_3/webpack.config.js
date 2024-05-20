@@ -40,7 +40,6 @@ module.exports = {
     },
     port: 8564,
     open: true,
-    compress: true,
   },
   module: {
     rules: [
