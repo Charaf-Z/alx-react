@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.App-header {
+  display: flex;
+  align-items: center;
+  color: red;
+  border-bottom: 3px solid red;
+}
+
+.App-body {
+  padding: 2rem;
+}
+
+.App-footer {
+  margin-top: auto;
+  padding-block: 0.5rem;
+  border-top: 3px solid red;
+  width: 100vw;
+  text-align: center;
+  font-style: italic;
+}
