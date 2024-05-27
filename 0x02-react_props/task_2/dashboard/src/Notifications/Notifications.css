@@ -1,0 +1,16 @@
+.Notifications {
+  border: 2px dashed red;
+  padding: 0.5rem;
+}
+
+.Notifications ul {
+  margin: 0.7rem 3rem;
+}
+
+.Notifications ul li[data-notification-type='default'] {
+  color: blue;
+}
+
+.Notifications ul li[data-notification-type='urgent'] {
+  color: red;
+}
