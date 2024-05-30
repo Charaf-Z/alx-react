@@ -8,7 +8,7 @@ import Notifications from '../Notifications/Notifications';
 import { getLatestNotification } from '../utils/utils';
 import './App.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
   listCourses = [
     { id: 1, name: 'ES6', credit: 60 },
     { id: 2, name: 'Webpack', credit: 20 },
@@ -48,3 +48,5 @@ App.defaultProps = {
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
 };
+
+export default App;
