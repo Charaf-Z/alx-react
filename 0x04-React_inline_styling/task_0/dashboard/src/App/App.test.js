@@ -80,7 +80,7 @@ describe('Ctrl + h', () => {
     app.unmount();
   });
 
-  document.alert = jest.fn();
+  window.alert = jest.fn();
   it('Alert is called', () => {
     const app = mount(<App />);
     const spy = jest.spyOn(window, 'alert');
@@ -100,5 +100,5 @@ describe('Ctrl + h', () => {
     jest.restoreAllMocks();
     app.unmount();
   });
-  document.alert.mockClear();
+  window.alert.mockClear();
 });
