@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const rowStyle = {
-  backgroundColor: '#f5f5f5ab',
-};
-
-const headRowStyle = {
-  backgroundColor: '#deb5b545',
-};
-
 export default function CourseListRow({
   isHeader,
   textFirstCell,
   textSecondCell,
 }) {
+  const rowStyle = {
+    backgroundColor: '#f5f5f5ab',
+  };
+
+  const headRowStyle = {
+    backgroundColor: '#deb5b545',
+  };
+  const endStyle = isHeader ? headRowStyle : rowStyle;
   return (
-    <tr style={isHeader ? headRowStyle : rowStyle}>
+    <tr style={endStyle}>
       {isHeader &&
         (!textSecondCell ? (
           <th colSpan={2}>{textFirstCell}</th>
