@@ -13,7 +13,7 @@ describe('Course List Row Component', () => {
 
     expect(row.find('tr').children()).toHaveLength(1);
     expect(row.find('tr').childAt(0).html()).toEqual(
-      '<th style="background-color:#deb5b545" colSpan="2">test</th>'
+      '<th colSpan="2">test</th>'
     );
   });
 
@@ -27,12 +27,8 @@ describe('Course List Row Component', () => {
     );
 
     expect(row.find('tr').children()).toHaveLength(2);
-    expect(row.find('tr').childAt(0).html()).toEqual(
-      '<th style="background-color:#deb5b545">test1</th>'
-    );
-    expect(row.find('tr').childAt(1).html()).toEqual(
-      '<th style="background-color:#deb5b545">test2</th>'
-    );
+    expect(row.find('tr').childAt(0).html()).toEqual('<th>test1</th>');
+    expect(row.find('tr').childAt(1).html()).toEqual('<th>test2</th>');
   });
 
   it('The body of the table', () => {
