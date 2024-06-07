@@ -71,7 +71,9 @@ export default class App extends React.Component {
               </p>
             </BodySection>
           </div>
-          <Footer />
+          <div className={css(styles.footer)}>
+            <Footer />
+          </div>
         </div>
       </React.Fragment>
     );
@@ -84,8 +86,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     minHeight: '100vh',
   },
-  AppBody: {
+  body: {
     padding: '5rem',
+  },
+  footer: {
+    marginTop: 'auto',
+    paddingTop: '0.05rem',
+    paddingBottom: '0.05rem',
+    fontStyle: 'italic',
+    borderTop: '3px solid red',
   },
 });
 
