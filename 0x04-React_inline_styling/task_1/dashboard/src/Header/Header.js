@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 export default function Header() {
   return (
-    <div className={css(style.AppHeader)}>
+    <div className={css(style.header)}>
       <img
         src={holbertonLogo}
         className={css(style.logo)}
@@ -16,7 +16,7 @@ export default function Header() {
 }
 
 const style = StyleSheet.create({
-  AppHeader: {
+  header: {
     display: 'flex',
     alignItems: 'center',
     color: 'red',

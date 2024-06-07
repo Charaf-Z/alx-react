@@ -44,7 +44,7 @@ export default class App extends React.Component {
         <Notifications listNotifications={this.listNotifications} />
         <div className={css(styles.App)}>
           <Header />
-          <div className={css(styles.AppBody)}>
+          <div className={css(styles.body)}>
             {this.props.isLoggedIn ? (
               <BodySectionWithMarginBottom title="Course list">
                 <CourseList listCourses={this.listCourses} />
