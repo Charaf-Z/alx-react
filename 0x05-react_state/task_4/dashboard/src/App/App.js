@@ -33,6 +33,7 @@ export default class App extends React.Component {
 
   handleKeyPress = (event) => {
     if (event.ctrlKey && event.key === 'h') {
+      event.preventDefault();
       alert('Logging you out');
       this.logOut();
     }
