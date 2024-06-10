@@ -1,7 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from 'react';
 import Footer from './Footer';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { getFooterCopy, getFullYear } from '../utils/utils';
+import { AppContext, user } from '../App/AppContext';
 
 describe('Footer Component', () => {
   it('Wihtout Crashing', () => {
@@ -14,5 +19,31 @@ describe('Footer Component', () => {
     expect(footer.text()).toEqual(
       `Copyright ${getFullYear()} - ${getFooterCopy(true)}`
     );
+  });
+
+  it('Default context', () => {
+    const context = { user };
+    const footer = mount(
+      <AppContext.Provider value={context}>
+        <Footer />
+      </AppContext.Provider>
+    );
+    expect(footer.find('a').length).toBe(0);
+    expect(footer.find('a').exists()).toBe(false);
+    expect(footer.text()).not.toContain('Contact us');
+    footer.unmount();
+  });
+
+  it('Updated context', () => {
+    const context = { user: { ...user, isLoggedIn: true } };
+    const footer = mount(
+      <AppContext.Provider value={context}>
+        <Footer />
+      </AppContext.Provider>
+    );
+    expect(footer.find('a').length).toBe(1);
+    expect(footer.find('a').exists()).toBe(true);
+    expect(footer.text()).toContain('Contact us');
+    footer.unmount();
   });
 });
