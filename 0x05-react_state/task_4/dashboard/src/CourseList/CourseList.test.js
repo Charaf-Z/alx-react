@@ -40,13 +40,13 @@ describe('Course List Component', () => {
     });
     expect(row.find('tbody').children()).toHaveLength(3);
     expect(row.find('tbody').childAt(0).html()).toMatch(
-      /<tr class="default_.*><td>ES6<\/td><td>60<\/td><\/tr>/
+      /<tr class="default_.*><td><input type="checkbox"\/>ES6<\/td><td>60<\/td><\/tr>/
     );
     expect(row.find('tbody').childAt(1).html()).toMatch(
-      /<tr class="default_.*><td>Webpack<\/td><td>20<\/td><\/tr>/
+      /<tr class="default_.*><td><input type="checkbox"\/>Webpack<\/td><td>20<\/td><\/tr>/
     );
     expect(row.find('tbody').childAt(2).html()).toMatch(
-      /<tr class="default_.*><td>React<\/td><td>40<\/td><\/tr>/
+      /<tr class="default_.*><td><input type="checkbox"\/>React<\/td><td>40<\/td><\/tr>/
     );
   });
 
@@ -54,13 +54,13 @@ describe('Course List Component', () => {
     const wrapper = shallow(<CourseList listCourses={listCourses} />);
     expect(wrapper.find('tbody').children()).toHaveLength(3);
     expect(wrapper.find('tbody').childAt(0).html()).toMatch(
-      /<tr class="default_.*><td>ES6<\/td><td>60<\/td><\/tr>/
+      /<tr class="default_.*><td><input type="checkbox"\/>ES6<\/td><td>60<\/td><\/tr>/
     );
     expect(wrapper.find('tbody').childAt(1).html()).toMatch(
-      /<tr class="default_.*><td>Webpack<\/td><td>20<\/td><\/tr>/
+      /<tr class="default_.*><td><input type="checkbox"\/>Webpack<\/td><td>20<\/td><\/tr>/
     );
     expect(wrapper.find('tbody').childAt(2).html()).toMatch(
-      /<tr class="default_.*><td>React<\/td><td>40<\/td><\/tr>/
+      /<tr class="default_.*><td><input type="checkbox"\/>React<\/td><td>40<\/td><\/tr>/
     );
   });
 });

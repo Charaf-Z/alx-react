@@ -48,9 +48,8 @@ describe('Course List Row Component', () => {
         textSecondCell="test2"
       />
     );
-
     expect(row.find('tr').children()).toHaveLength(2);
-    expect(row.find('tr').childAt(0).html()).toEqual('<td>test1</td>');
-    expect(row.find('tr').childAt(1).html()).toEqual('<td>test2</td>');
+    expect(row.find('td').at(0).text()).toBe('test1');
+    expect(row.find('td').at(1).text()).toBe('test2');
   });
 });

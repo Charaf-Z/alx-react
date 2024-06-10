@@ -1,28 +1,18 @@
+import { StyleSheet, css } from 'aphrodite';
+import PropTypes from 'prop-types';
 import React from 'react';
 import closeIcon from '../assets/close-icon.png';
 import NotificationItem from './NotificationItem';
-import PropTypes from 'prop-types';
 import { NotificationItemShape } from './NotificationItemShape';
-import { StyleSheet, css } from 'aphrodite';
 
-export default class Notifications extends React.Component {
-  markAsRead = (id) => {
-    console.log(`Notification ${id} has been marked as read`);
-  };
-
-  shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.length > this.props.listNotifications.length ||
-      nextProps.displayDrawer !== this.props.displayDrawer
-    );
-  }
-
+export default class Notifications extends React.PureComponent {
   render() {
     const {
       displayDrawer,
       listNotifications,
       handleDisplayDrawer,
       handleHideDrawer,
+      markNotificationAsRead,
     } = this.props;
     return (
       <div className={css(styles.menuItem)}>
@@ -54,11 +44,11 @@ export default class Notifications extends React.Component {
             )}
             <ul className={css(styles.notificationUl)}>
               {listNotifications && listNotifications.length > 0 ? (
-                this.props.listNotifications.map((item) => (
+                listNotifications.map((item) => (
                   <NotificationItem
                     key={item.id}
                     {...item}
-                    markAsRead={this.markAsRead}
+                    markAsRead={markNotificationAsRead}
                   />
                 ))
               ) : (
@@ -142,6 +132,7 @@ Notifications.defaultProps = {
   listNotifications: [],
   handleDisplayDrawer: () => {},
   handleHideDrawer: () => {},
+  markNotificationAsRead: () => {},
 };
 
 Notifications.propTypes = {
@@ -149,4 +140,5 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
+  markNotificationAsRead: PropTypes.func,
 };

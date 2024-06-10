@@ -158,11 +158,10 @@ describe('Notification Optimization', () => {
         listNotifications={listNotifications}
       />
     );
-    const spy = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
-    ntf.setProps({ listNotifications: listNotifications });
-    expect(spy).toHaveBeenCalled();
-    expect(spy).toHaveLastReturnedWith(false);
-    jest.restoreAllMocks();
+    expect(ntf.find('NotificationItem').length).toEqual(3);
+    expect(ntf.find('NotificationItem').first().props().value).toEqual(
+      'New course available'
+    );
   });
 
   it('Add new notifications', () => {
@@ -177,9 +176,10 @@ describe('Notification Optimization', () => {
         listNotifications={listNotifications}
       />
     );
-
-    expect(ntf.instance().shouldComponentUpdate(newlistNotifications)).toBe(
-      true
+    ntf.setProps({ listNotifications: newlistNotifications });
+    expect(ntf.find('NotificationItem').length).toEqual(4);
+    expect(ntf.find('NotificationItem').last().props().value).toEqual(
+      'dummy string'
     );
   });
 });
