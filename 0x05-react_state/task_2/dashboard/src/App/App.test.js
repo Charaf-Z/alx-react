@@ -91,12 +91,12 @@ describe('App Body checks', () => {
 
 describe('Ctrl + h', () => {
   it('LogOut is called', () => {
-    const mockedFn = jest.fn();
-    const app = mount(<App logOut={mockedFn} />);
+    const app = shallow(<App />);
+    const instance = app.instance();
+    const logOut = jest.spyOn(instance, 'logOut');
     const event = new KeyboardEvent('keydown', { ctrlKey: true, key: 'h' });
     document.dispatchEvent(event);
-    expect(mockedFn).toHaveBeenCalledTimes(1);
-    app.unmount();
+    expect(logOut).toHaveBeenCalled();
   });
 
   window.alert = jest.fn();
@@ -145,12 +145,7 @@ describe('State Handling', () => {
   });
 
   it('Update user state', () => {
-    const context = { user, logOut };
-    const app = mount(
-      <AppContext.Provider value={context}>
-        <App />
-      </AppContext.Provider>
-    );
+    const app = shallow(<App />);
     const newUser = {
       email: 'mail@m.com',
       password: '123#kill',
@@ -160,10 +155,22 @@ describe('State Handling', () => {
     expect(app.state().user).toEqual(user);
     const instance = app.instance();
     instance.logIn(newUser.email, newUser.password);
-    // React.act(() => {
-    //   instance.logIn(newUser.email, newUser.password);
-    // });
     expect(app.state().user).toEqual(newUser);
-    app.unmount();
+  });
+
+  it('Calling the logOut', () => {
+    const app = shallow(<App />);
+    const newUser = {
+      email: 'mail@m.com',
+      password: '123#kill',
+      isLoggedIn: true,
+    };
+
+    expect(app.state().user).toEqual(user);
+    const instance = app.instance();
+    instance.logIn(newUser.email, newUser.password);
+    expect(app.state().user).toEqual(newUser);
+    instance.logOut();
+    expect(app.state().user).toEqual(user);
   });
 });
